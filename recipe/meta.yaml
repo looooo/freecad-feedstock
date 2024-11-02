@@ -31,7 +31,6 @@ requirements:
         - sed                                    # [unix]
         - python                                 # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-        - noqt6
     host:
         - libopengl-devel      # [linux]
         - libglvnd-devel      # [linux]
