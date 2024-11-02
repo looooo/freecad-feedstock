@@ -59,6 +59,7 @@ requirements:
         - matplotlib-base
         - yaml-cpp
         - pivy
+        - noqt6
     run:
         - pyside2
         - vtk
