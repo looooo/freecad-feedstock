@@ -1,6 +1,6 @@
 {% set name = "freecad" %}
 {% set version = "1.1dev" %}
-{% set build_number = 15 %}
+{% set build_number = 16 %}
 {% set build_number = build_number + 500 %}  # [FEATURE_DEBUG]
 
 package:
@@ -13,6 +13,7 @@ source:
     # sha256:
     patches:
         - patches/osx_arm64_cross_compiling.patch    # [build_platform != target_platform and osx]
+
 build:
     number: {{ build_number }}
     skip: true  # [py != 311]
@@ -21,10 +22,18 @@ requirements:
     build:
         - {{ compiler("cxx") }}
         - {{ stdlib("c") }}
-        - libopengl-devel      # [linux and build_platform != target_platform]
-        - libglvnd-devel      # [linux and build_platform != target_platform]
-        - libgl-devel      # [linux and build_platform != target_platform]
-        - libegl-devel     # [linux and build_platform != target_platform]
+        - {{ cdt('mesa-libgl-devel') }}      # [linux]
+        - {{ cdt('mesa-dri-drivers') }}      # [linux]
+        - {{ cdt('mesa-libegl-devel') }}     # [linux]
+        - {{ cdt('libselinux') }}            # [linux]
+        - {{ cdt('libxdamage') }}            # [linux]
+        - {{ cdt('libxfixes') }}             # [linux]
+        - {{ cdt('libxxf86vm') }}            # [linux]
+        - {{ cdt('libxcb') }}                # [linux]
+        - {{ cdt('libxext') }}               # [linux]
+        - {{ cdt('xorg-x11-server-xvfb') }}  # [linux]
+        - {{ cdt('libxau') }}                # [linux]
+        - {{ cdt('libxi-devel') }}           # [linux]
         - cmake
         - swig
         - ninja
@@ -32,10 +41,6 @@ requirements:
         - python                                 # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     host:
-        - libopengl-devel      # [linux]
-        - libglvnd-devel      # [linux]
-        - libgl-devel      # [linux]
-        - libegl-devel     # [linux]
         - libboost-devel
         - python
         - qt-main
