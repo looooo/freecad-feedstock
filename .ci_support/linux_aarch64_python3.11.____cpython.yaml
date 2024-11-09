@@ -7,7 +7,7 @@ c_stdlib_version:
 cdt_arch:
 - aarch64
 cdt_name:
-- cos7
+- conda
 channel_sources:
 - freecad/label/dev,conda-forge
 channel_targets:
@@ -23,11 +23,11 @@ freetype:
 hdf5:
 - 1.14.3
 libboost_devel:
-- '1.84'
+- '1.82'
 occt:
-- 7.8.1
+- 7.7.2
 pcl:
-- 1.14.1
+- 1.14.0
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -35,15 +35,12 @@ pin_run_as_build:
 python:
 - 3.11.* *_cpython
 qt_main:
-- '5.15'
+- 5.15.13
 target_platform:
 - linux-aarch64
 vtk:
-- 9.3.0
+- 9.2.6
 xerces_c:
 - '3.2'
-zip_keys:
-- - c_stdlib_version
-  - cdt_name
 zlib:
 - '1'
