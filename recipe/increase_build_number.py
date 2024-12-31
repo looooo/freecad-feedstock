@@ -20,7 +20,7 @@ response = requests.get(url)
 response.raise_for_status()
 sha256 = response.content.decode('utf-8')
 print(f"set sha256:  {sha256}")
-text = re.sub(r"(?<={% set sha256 = )\d+", str(sha256), text)
+text = re.sub(r'(?<={% set sha256 = ")[a-fA-F0-9]+(?=" %})', str(sha256), text)
 
 # write meta.yaml file
 with open("recipe/meta.yaml", "w") as f:
