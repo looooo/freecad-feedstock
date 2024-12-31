@@ -15,7 +15,7 @@ print(f"set build_number from build_number {build_number_old} to {build_number_n
 text = re.sub(r"(?<={% set build_number = )\d+", str(build_number_new), text)
 
 # set sha256sum
-url = "https://github.com/FreeCAD/FreeCAD-Bundle/releases/download/weekly-builds/freecad_source_sha256sum.txt"
+url = "https://github.com/FreeCAD/FreeCAD-Bundle/releases/download/weekly-builds/freecad_source.tar.gz-SHA256.txt"
 response = requests.get(url)
 response.raise_for_status()
 sha256 = response.content.decode('utf-8')
