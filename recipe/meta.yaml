@@ -2,7 +2,7 @@
 {% set version = "1.1dev" %}
 {% set build_number = 34 %}
 {% set build_number = build_number + 500 %}  # [FEATURE_DEBUG]
-{% set sha256 = 65dc32f217a3fe757f5b81bb45dae0cc151c82304e8016ddcc9efbd46fbbc864 %}
+{% set sha256 = "5fbfb92908b23611308b733bb1679bd1610c37d6fce26320af8ae709f16dc526" %}
 
 package:
     name: {{ name }}
