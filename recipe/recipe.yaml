@@ -9,13 +9,12 @@ package:
 
 source:
   - url: https://github.com/FreeCAD/FreeCAD/releases/download/${{ version }}/freecad_source.tar.gz
-    file_name: freecad_source_${{ build_number }}.tar.gz
     sha256: b5af251615eeab3905b2aa5fbd432cf90c57b86f9ba2a50ca23c9cc1703f81d9
     patches:
       - if: osx and arm64
         then:
           - patches/osx_arm64_cross_compiling.patch
-          - patches/py313.patch
+      - patches/py313.patch
 
 build:
   number: ${{ build_number }}
