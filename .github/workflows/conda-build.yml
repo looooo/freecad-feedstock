@@ -42,7 +42,7 @@ jobs:
           - CONFIG: osx_arm64_python3.13.____cp313
             UPLOAD_PACKAGES: False
             os: macos
-            runs_on: ['macos-latest']
+            runs_on: ['macos-13']
           - CONFIG: win_64_python3.13.____cp313
             UPLOAD_PACKAGES: False
             os: windows
