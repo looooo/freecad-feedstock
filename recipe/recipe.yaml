@@ -29,13 +29,7 @@ requirements:
         - pybind11
         - qt6-main
         - noqt5
-    - if: target_platform == linux-aarch64 and build_platform != target_platform
-      then:
-        - cross-python_linux-aarch64
-    - if: target_platform == osx-arm64 and build_platform != target_platform
-      then:
-        - cross-python_osx-arm64
-    - if: linux
+        - cross-python_{{ target_platform }}
       then:
         - ${{ cdt('mesa-libgl-devel') }}
         - ${{ cdt('mesa-dri-drivers') }}
