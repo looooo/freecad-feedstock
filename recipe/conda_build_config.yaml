@@ -5,3 +5,5 @@ cxx_compiler:         # [win]
 
 MACOSX_SDK_VERSION:   # [osx]
   - '11.0'            # [osx]
+hdf5:
+  - '1.14.4'
