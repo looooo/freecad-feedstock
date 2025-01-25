@@ -30,7 +30,6 @@ requirements:
         - qt6-main
         - noqt5
         - cross-python_${{ target_platform }}
-      then:
         - ${{ cdt('mesa-libgl-devel') }}
         - ${{ cdt('mesa-dri-drivers') }}
         - ${{ cdt('mesa-libegl-devel') }}
