@@ -18,6 +18,7 @@ build:
     number: {{ build_number }}
     script_env:
         - USE_QT6=1
+    skip: true  # [py != 313]
 
 requirements:
     build:
