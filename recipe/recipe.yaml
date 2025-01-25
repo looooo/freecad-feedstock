@@ -26,10 +26,15 @@ requirements:
     - if: build_platform != target_platform
       then:
         - python
-        - cross-python
         - pybind11
         - qt6-main
         - noqt5
+        - if: target_platform == linux_aarch64
+          then:
+            -  cross-python_linux-aarch64
+        - if: target_platform == osx-arm64
+          then:
+            -  cross-python_osx-arm64
     - if: linux
       then:
         - ${{ cdt('mesa-libgl-devel') }}
