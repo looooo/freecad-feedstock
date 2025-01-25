@@ -22,25 +22,25 @@ jobs:
       matrix:
         include:
           - CONFIG: linux_64_python3.13.____cp313
-            UPLOAD_PACKAGES: True
+            UPLOAD_PACKAGES: False
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
           - CONFIG: linux_aarch64_python3.13.____cp313
-            UPLOAD_PACKAGES: True
+            UPLOAD_PACKAGES: False
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
           - CONFIG: osx_64_python3.13.____cp313
-            UPLOAD_PACKAGES: True
+            UPLOAD_PACKAGES: False
             os: macos
             runs_on: ['macos-13']
           - CONFIG: osx_arm64_python3.13.____cp313
-            UPLOAD_PACKAGES: True
+            UPLOAD_PACKAGES: False
             os: macos
-            runs_on: ['macos-13']
+            runs_on: ['macos-latest']
           - CONFIG: win_64_python3.13.____cp313
-            UPLOAD_PACKAGES: True
+            UPLOAD_PACKAGES: False
             os: windows
             runs_on: ['windows-latest']
     steps:
@@ -116,3 +116,33 @@ jobs:
         FEEDSTOCK_TOKEN: ${{ secrets.FEEDSTOCK_TOKEN }}
         STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
       if: matrix.os == 'windows'
+
+    - name: Upload package on linux
+      if: matrix.os == 'ubuntu' && github.event_name == 'push'
+      shell: bash
+      # do not upload on PR
+      run: |
+        # uses trusted publishers for the upload
+        for file in /home/conda/feedstock_root/build_artifacts/**/*.conda; do
+          rattler-build upload prefix -c freecad "$file"
+        done
+
+    - name: Upload package on osx
+      if: matrix.os == 'macos' && github.event_name == 'push'
+      shell: bash
+      # do not upload on PR
+      run: |
+        # uses trusted publishers for the upload
+        for file in /Users/runner/miniforge3/conda-bld/**/*.conda; do
+          rattler-build upload prefix -c freecad "$file"
+        done
+
+    - name: Upload package on windows
+      if: matrix.os == 'windows' && github.event_name == 'push'
+      shell: bash
+      # do not upload on PR
+      run: |
+        # uses trusted publishers for the upload
+        for file in C:\bld\win-64\*.conda; do
+          rattler-build upload prefix -c freecad "$file"
+        done
