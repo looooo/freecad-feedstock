@@ -1,3 +1,5 @@
+channel_targets:
+  - freecad dev
 c_compiler:           # [win]
   - vs2022            # [win]
 cxx_compiler:         # [win]
