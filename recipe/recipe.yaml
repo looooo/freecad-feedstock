@@ -29,12 +29,12 @@ requirements:
         - pybind11
         - qt6-main
         - noqt5
-        - if: target_platform == linux_aarch64
+        - if: target_platform == linux-aarch64
           then:
-            -  cross-python_linux-aarch64
+            - cross-python_linux-aarch64
         - if: target_platform == osx-arm64
           then:
-            -  cross-python_osx-arm64
+            - cross-python_osx-arm64
     - if: linux
       then:
         - ${{ cdt('mesa-libgl-devel') }}
@@ -127,4 +127,3 @@ extra:
   recipe-maintainers:
     - adrianinsaval
     - looooo
-
