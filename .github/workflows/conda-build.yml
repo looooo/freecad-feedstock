@@ -129,9 +129,18 @@ jobs:
       if: matrix.os == 'ubuntu' || matrix.os == 'macos'
       run: curl -fsSL https://pixi.sh/install.sh | bash
 
-    - name: Install Rattler-Build
+    - name: Install Rattler-Build: unix
+      if: matrix.os == 'ubuntu' || matrix.os == 'macos'
       shell: bash
       run: |
+        export PATH="$HOME/.pixi/bin:$PATH"
+        pixi global install rattler-build
+
+    - name: Install Rattler-Build: windows
+      if: matrix.os == 'windows'
+      shell: pwsh
+      run: |
+        $env:Path = "$env:USERPROFILE\.pixi\bin;$env:Path"
         pixi global install rattler-build
 
     - name: Upload package on linux
@@ -139,7 +148,7 @@ jobs:
       shell: bash
       # do not upload on PR
       run: |
-        # uses trusted publishers for the upload
+        export PATH="$HOME/.pixi/bin:$PATH"
         for file in /home/conda/feedstock_root/build_artifacts/**/*.conda; do
           rattler-build upload prefix -c freecad "$file"
         done
@@ -149,17 +158,16 @@ jobs:
       shell: bash
       # do not upload on PR
       run: |
-        # uses trusted publishers for the upload
+        export PATH="$HOME/.pixi/bin:$PATH"
         for file in /Users/runner/miniforge3/conda-bld/**/*.conda; do
           rattler-build upload prefix -c freecad "$file"
         done
 
     - name: Upload package on windows
       if: matrix.os == 'windows' && github.event_name == 'push'
-      shell: bash
-      # do not upload on PR
+      shell: pwsh
       run: |
-        # uses trusted publishers for the upload
+        $env:Path = "$env:USERPROFILE\.pixi\bin;$env:Path"
         for file in C:\bld\win-64\*.conda; do
           rattler-build upload prefix -c freecad "$file"
         done
