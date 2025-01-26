@@ -129,7 +129,7 @@ jobs:
     - name: Install Rattler-Build
       shell: bash
       run: |
-        pixi install rattler-build
+        pixi global install rattler-build
 
     - name: Upload package on linux
       if: matrix.os == 'ubuntu' && github.event_name == 'push'
