@@ -121,6 +121,16 @@ jobs:
         STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
       if: matrix.os == 'windows'
 
+    - uses: prefix-dev/setup-pixi@v0.8.1
+      with:
+        pixi-version: v0.40.3
+        cache: true
+
+    - name: Install Rattler-Build
+      shell: bash
+      run: |
+        pixi install rattler-build
+
     - name: Upload package on linux
       if: matrix.os == 'ubuntu' && github.event_name == 'push'
       shell: bash
