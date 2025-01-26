@@ -132,7 +132,7 @@ jobs:
         pixi global install rattler-build
 
     - name: Upload package on linux
-      if: matrix.os == 'ubuntu' && github.event_name == 'push'
+      if: matrix.os == 'ubuntu'
       shell: bash
       # do not upload on PR
       run: |
@@ -142,7 +142,7 @@ jobs:
         done
 
     - name: Upload package on osx
-      if: matrix.os == 'macos' && github.event_name == 'push'
+      if: matrix.os == 'macos'
       shell: bash
       # do not upload on PR
       run: |
@@ -152,7 +152,7 @@ jobs:
         done
 
     - name: Upload package on windows
-      if: matrix.os == 'windows' && github.event_name == 'push'
+      if: matrix.os == 'windows'
       shell: bash
       # do not upload on PR
       run: |
