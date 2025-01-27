@@ -148,7 +148,7 @@ jobs:
       shell: bash
       run: |
         export PATH="$HOME/.pixi/bin:$PATH"
-        for file in /home/runner/work/freecad-feedstock/freecad-feedstock/build_artifacts/**/*.conda; do
+        for file in /home/runner/work/freecad-feedstock/freecad-feedstock/build_artifacts/**/freecad*.conda; do
           rattler-build upload prefix -c freecad "$file"
         done
 
@@ -157,7 +157,7 @@ jobs:
       shell: bash
       run: |
         export PATH="$HOME/.pixi/bin:$PATH"
-        for file in /Users/runner/miniforge3/conda-bld/**/*.conda; do
+        for file in /Users/runner/miniforge3/conda-bld/**/freecad*.conda; do
           rattler-build upload prefix -c freecad "$file"
         done
 
@@ -166,6 +166,6 @@ jobs:
       shell: pwsh
       run: |
         $Env:PATH="$Env:USERPROFILE\.pixi\bin;$Env:PATH"
-        Get-ChildItem -Path C:\bld\win-64\ -Recurse -Filter *.conda | ForEach-Object {
+        Get-ChildItem -Path C:\bld\win-64\ -Recurse -Filter freecad*.conda | ForEach-Object {
           rattler-build upload prefix -c freecad $_.FullName
         }
