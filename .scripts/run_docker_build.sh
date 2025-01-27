@@ -40,7 +40,6 @@ if hash docker-machine 2> /dev/null && docker-machine active > /dev/null; then
 fi
 
 ARTIFACTS="$FEEDSTOCK_ROOT/build_artifacts"
-echo "############# ${ARTIFACTS} #############"
 
 if [ -z "$CONFIG" ]; then
     set +x

@@ -146,28 +146,26 @@ jobs:
     - name: Upload package on linux
       if: matrix.os == 'ubuntu' && github.event_name == 'push'
       shell: bash
-      # do not upload on PR
       run: |
         export PATH="$HOME/.pixi/bin:$PATH"
-        for file in /home/conda/feedstock_root/build_artifacts/**/*.conda; do
+        for file in /home/runner/work/freecad-feedstock/freecad-feedstock/build_artifacts/**/*.conda; do
           rattler-build upload prefix -c freecad "$file"
         done
 
     - name: Upload package on osx
       if: matrix.os == 'macos' && github.event_name == 'push'
       shell: bash
-      # do not upload on PR
       run: |
         export PATH="$HOME/.pixi/bin:$PATH"
         for file in /Users/runner/miniforge3/conda-bld/**/*.conda; do
           rattler-build upload prefix -c freecad "$file"
         done
 
-    - name: Upload package on windows
-      if: matrix.os == 'windows' && github.event_name == 'push'
+    - name: Upload package on Windows
+      if: matrix.os == 'windows-latest' && github.event_name == 'push'
       shell: pwsh
       run: |
-        $env:Path = "$env:USERPROFILE\.pixi\bin;$env:Path"
-        for file in C:\bld\win-64\*.conda; do
-          rattler-build upload prefix -c freecad "$file"
-        done
+        $Env:PATH="$Env:USERPROFILE\.pixi\bin;$Env:PATH"
+        Get-ChildItem -Path C:\Users\conda\feedstock_root\build_artifacts\ -Recurse -Filter *.conda | ForEach-Object {
+          rattler-build upload prefix -c freecad $_.FullName
+        }
