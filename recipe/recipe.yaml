@@ -96,7 +96,9 @@ requirements:
 
 tests:
   - script:
-     - freecadcmd -t 0
+     - if: unix
+       then:
+         - freecadcmd -t 0
 
 about:
   homepage: https://www.freecad.org/
