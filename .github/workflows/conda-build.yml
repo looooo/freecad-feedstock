@@ -166,6 +166,6 @@ jobs:
       shell: pwsh
       run: |
         $Env:PATH="$Env:USERPROFILE\.pixi\bin;$Env:PATH"
-        Get-ChildItem -Path C:\Users\conda\feedstock_root\build_artifacts\ -Recurse -Filter *.conda | ForEach-Object {
+        Get-ChildItem -Path C:\bld\win-64\ -Recurse -Filter *.conda | ForEach-Object {
           rattler-build upload prefix -c freecad $_.FullName
         }
