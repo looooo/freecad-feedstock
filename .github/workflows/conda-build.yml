@@ -162,7 +162,7 @@ jobs:
         done
 
     - name: Upload package on Windows
-      if: matrix.os == 'windows-latest' && github.event_name == 'push'
+      if: matrix.os == 'windows' && github.event_name == 'push'
       shell: pwsh
       run: |
         $Env:PATH="$Env:USERPROFILE\.pixi\bin;$Env:PATH"
