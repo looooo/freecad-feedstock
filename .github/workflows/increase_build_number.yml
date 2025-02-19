@@ -24,3 +24,5 @@ jobs:
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -am "build_number +=1"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
