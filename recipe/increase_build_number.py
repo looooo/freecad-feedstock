@@ -18,7 +18,7 @@ text = re.sub(r"(?<={% set build_number = )\d+", str(build_number_new), text)
 url = "https://github.com/FreeCAD/FreeCAD-Bundle/releases/download/weekly-builds/freecad_source.tar.gz-SHA256.txt"
 response = requests.get(url)
 response.raise_for_status()
-sha256 = response.content.decode('utf-8')
+sha256 = response.content.decode('utf-8').split()[0]
 print(f"set sha256:  {sha256}")
 text = re.sub(r'(?<={% set sha256sum = ")[a-fA-F0-9]+(?=" %})', str(sha256), text)
 
