@@ -3,6 +3,10 @@
 # -*- mode: yaml -*-
 
 name: Build conda package
+
+permissions:
+  id-token: write
+
 on:
   push:
 
