@@ -1,7 +1,7 @@
 {% set name = "freecad" %}
 {% set version = "1.1.dev" %}
-{% set build_number = 43 %}
-{% set sha256sum = "4de78b074f27831e5921d2c7888422472ea25b79c21279146c8cf0feb86339aa" %}
+{% set build_number = 44 %}
+{% set sha256sum = "745df59ed323eff51ce8dfdbf00d6ed592f8a8bdbdbcc835b0bb2aefc1916507" %}
 
 package:
     name: {{ name }}
