@@ -1,39 +1,41 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
 c_stdlib:
-- sysroot
+- macosx_deployment_target
 c_stdlib_version:
-- '2.17'
-cdt_name:
-- conda
+- '11.0'
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- gxx
+- clangxx
 cxx_compiler_version:
-- '13'
-docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma9
+- '19'
 freetype:
 - '2'
 hdf5:
-- 1.14.3
+- 1.14.6
 libboost_devel:
-- '1.86'
+- '1.88'
+macos_machine:
+- arm64-apple-darwin20.0.0
 occt:
 - 7.8.1
 pcl:
-- 1.14.1
+- 1.15.0
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.11.* *_cpython
+- 3.13.* *_cp313
 qt6_main:
-- '6.7'
+- '6.9'
 target_platform:
-- linux-64
+- osx-arm64
 vtk:
 - 9.3.1
 xerces_c:

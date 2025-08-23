@@ -11,11 +11,11 @@ freetype:
 hdf5:
 - 1.14.4
 libboost_devel:
-- '1.86'
+- '1.88'
 occt:
 - 7.8.1
 pcl:
-- 1.14.1
+- 1.15.0
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -23,7 +23,7 @@ pin_run_as_build:
 python:
 - 3.13.* *_cp313
 qt6_main:
-- '6.7'
+- '6.9'
 target_platform:
 - win-64
 tbb_devel:

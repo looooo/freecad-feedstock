@@ -13,19 +13,19 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '18'
+- '19'
 freetype:
 - '2'
 hdf5:
 - 1.14.4
 libboost_devel:
-- '1.86'
+- '1.88'
 macos_machine:
 - arm64-apple-darwin20.0.0
 occt:
 - 7.8.1
 pcl:
-- 1.14.1
+- 1.15.0
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -33,7 +33,7 @@ pin_run_as_build:
 python:
 - 3.10.* *_cpython
 qt6_main:
-- '6.7'
+- '6.9'
 target_platform:
 - osx-arm64
 vtk:
