@@ -16,6 +16,16 @@ set "CFLAGS= "
 set "CXXFLAGS= -DBOOST_PROGRAM_OPTIONS_DYN_LINK=1"
 set "LDFLAGS_SHARED= ucrt.lib"
 
+:: Create a stub pthread.h header for Windows to avoid SMESH pthread.h issues
+if not exist "%LIBRARY_PREFIX%\include\pthread.h" (
+    echo // Stub pthread.h for Windows > "%LIBRARY_PREFIX%\include\pthread.h"
+    echo // SMESH requires pthread.h but it's not available on Windows >> "%LIBRARY_PREFIX%\include\pthread.h"
+    echo #ifndef _PTHREAD_H >> "%LIBRARY_PREFIX%\include\pthread.h"
+    echo #define _PTHREAD_H >> "%LIBRARY_PREFIX%\include\pthread.h"
+    echo // Empty stub - Windows uses native threading APIs >> "%LIBRARY_PREFIX%\include\pthread.h"
+    echo #endif >> "%LIBRARY_PREFIX%\include\pthread.h"
+)
+
 cmake -G "Ninja" -B build -S . ^
       -D BUILD_WITH_CONDA:BOOL=ON ^
       -D CMAKE_BUILD_TYPE=%BUILD_TYPE% ^
