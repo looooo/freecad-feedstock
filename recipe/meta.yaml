@@ -54,6 +54,7 @@ requirements:
         - matplotlib-base
         - noqt5
         - occt
+        - pivy >=0.6.10
         - pcl
         - ply
         - pybind11

@@ -55,7 +55,8 @@ cmake -G "Ninja" -B build -S . ^
       -D COIN3D_LIBRARY_RELEASE:FILEPATH="%LIBRARY_PREFIX%/lib/Coin4.lib" ^
       -D ENABLE_DEVELOPER_TESTS:BOOL=OFF ^
       -D FREECAD_USE_SHIBOKEN:BOOL=OFF ^
-      -D FREECAD_USE_PYSIDE:BOOL=OFF
+      -D FREECAD_USE_PYSIDE:BOOL=OFF ^
+      -D FREECAD_CHECK_PIVY:BOOL=OFF
 if %ERRORLEVEL% neq 0 exit 1
 
 ninja -C build install
