@@ -55,7 +55,6 @@ requirements:
         - noqt5
         - occt
         - pcl
-        - pivy >=0.6.10
         - ply
         - pybind11
         - pyside6
