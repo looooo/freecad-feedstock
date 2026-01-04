@@ -44,6 +44,7 @@ requirements:
         - qt6-main                               # [build_platform != target_platform]
         - noqt5                                  # [build_platform != target_platform]
         - doxygen
+        - lark
     host:
         - coin3d
         - eigen
