@@ -16,7 +16,7 @@ set "CFLAGS= "
 set "CXXFLAGS= -DBOOST_PROGRAM_OPTIONS_DYN_LINK=1"
 set "LDFLAGS_SHARED= ucrt.lib"
 
-:: Create a stub pthread.h header for Windows to avoid SMESH pthread.h issues
+:: Create stub headers for Windows to avoid SMESH POSIX header issues
 if not exist "%LIBRARY_PREFIX%\include\pthread.h" (
     echo // Stub pthread.h for Windows > "%LIBRARY_PREFIX%\include\pthread.h"
     echo // SMESH requires pthread.h but it's not available on Windows >> "%LIBRARY_PREFIX%\include\pthread.h"
@@ -24,6 +24,15 @@ if not exist "%LIBRARY_PREFIX%\include\pthread.h" (
     echo #define _PTHREAD_H >> "%LIBRARY_PREFIX%\include\pthread.h"
     echo // Empty stub - Windows uses native threading APIs >> "%LIBRARY_PREFIX%\include\pthread.h"
     echo #endif >> "%LIBRARY_PREFIX%\include\pthread.h"
+)
+
+if not exist "%LIBRARY_PREFIX%\include\semaphore.h" (
+    echo // Stub semaphore.h for Windows > "%LIBRARY_PREFIX%\include\semaphore.h"
+    echo // SMESH requires semaphore.h but it's not available on Windows >> "%LIBRARY_PREFIX%\include\semaphore.h"
+    echo #ifndef _SEMAPHORE_H >> "%LIBRARY_PREFIX%\include\semaphore.h"
+    echo #define _SEMAPHORE_H >> "%LIBRARY_PREFIX%\include\semaphore.h"
+    echo // Empty stub - Windows uses native synchronization APIs >> "%LIBRARY_PREFIX%\include\semaphore.h"
+    echo #endif >> "%LIBRARY_PREFIX%\include\semaphore.h"
 )
 
 cmake -G "Ninja" -B build -S . ^
