@@ -22,7 +22,11 @@ if not exist "%LIBRARY_PREFIX%\include\pthread.h" (
     echo // SMESH requires pthread.h but it's not available on Windows >> "%LIBRARY_PREFIX%\include\pthread.h"
     echo #ifndef _PTHREAD_H >> "%LIBRARY_PREFIX%\include\pthread.h"
     echo #define _PTHREAD_H >> "%LIBRARY_PREFIX%\include\pthread.h"
-    echo // Empty stub - Windows uses native threading APIs >> "%LIBRARY_PREFIX%\include\pthread.h"
+    echo #include ^<mutex^> >> "%LIBRARY_PREFIX%\include\pthread.h"
+    echo // Forward declarations for pthread types >> "%LIBRARY_PREFIX%\include\pthread.h"
+    echo typedef void* pthread_t; >> "%LIBRARY_PREFIX%\include\pthread.h"
+    echo typedef void* pthread_mutex_t; >> "%LIBRARY_PREFIX%\include\pthread.h"
+    echo typedef void* pthread_attr_t; >> "%LIBRARY_PREFIX%\include\pthread.h"
     echo #endif >> "%LIBRARY_PREFIX%\include\pthread.h"
 )
 
@@ -31,7 +35,8 @@ if not exist "%LIBRARY_PREFIX%\include\semaphore.h" (
     echo // SMESH requires semaphore.h but it's not available on Windows >> "%LIBRARY_PREFIX%\include\semaphore.h"
     echo #ifndef _SEMAPHORE_H >> "%LIBRARY_PREFIX%\include\semaphore.h"
     echo #define _SEMAPHORE_H >> "%LIBRARY_PREFIX%\include\semaphore.h"
-    echo // Empty stub - Windows uses native synchronization APIs >> "%LIBRARY_PREFIX%\include\semaphore.h"
+    echo // Forward declaration for sem_t >> "%LIBRARY_PREFIX%\include\semaphore.h"
+    echo typedef void* sem_t; >> "%LIBRARY_PREFIX%\include\semaphore.h"
     echo #endif >> "%LIBRARY_PREFIX%\include\semaphore.h"
 )
 
