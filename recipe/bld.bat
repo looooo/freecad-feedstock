@@ -43,8 +43,10 @@ if not exist "%LIBRARY_PREFIX%\include\semaphore.h" (
 :: Create empty pthread.lib stub library for Windows linker
 if not exist "%LIBRARY_PREFIX%\lib\pthread.lib" (
     :: Create a minimal C source file with empty stub functions
-    echo // Stub pthread functions for Windows > "%TEMP%\pthread_stub.c"
-    echo void pthread_stub_() {} >> "%TEMP%\pthread_stub.c"
+    (echo // Stub pthread functions for Windows
+     echo void pthread_stub_^(^) ^{
+     echo ^}
+    ) > "%TEMP%\pthread_stub.c"
     :: Compile to object file (cl.exe should be available during conda build)
     cl.exe /c /Fo"%TEMP%\pthread_stub.obj" "%TEMP%\pthread_stub.c" >nul 2>&1
     if exist "%TEMP%\pthread_stub.obj" (
