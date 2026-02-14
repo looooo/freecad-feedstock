@@ -1,15 +1,17 @@
 {% set name = "freecad" %}
-{% set version = "weekly_2025_12_31" %}
+{% set version = "1.2.dev" %}
 {% set build_number = 0 %}
-{% set build_number = build_number + 500 %}  # [FEATURE_DEBUG]
+{% set sha256sum = "bca05873623c0b586a93ee5ce84d02ad6ff65a566281c592fa5894741e2e39fe" %}
+{% set url = "https://github.com/FreeCAD/FreeCAD/releases/download/weekly-2026.02.11/freecad_source_weekly-2026.02.11.tar.gz" %}
+
 
 package:
     name: {{ name }}
     version: {{ version }}
 
 source:
-    url: https://github.com/FreeCAD/FreeCAD/releases/download/weekly-2025.12.31/freecad_source_weekly-2025.12.31.tar.gz
-    sha256: fff266be9084061f8390ce1d78d4b61eb51674681c6b2d1d2d1e59c0b7abc66b
+    url: {{ url }}
+    sha256: {{ sha256sum }}
     patches:
         - patches/osx_arm64_cross_compiling.patch    # [osx and arm64]
 
