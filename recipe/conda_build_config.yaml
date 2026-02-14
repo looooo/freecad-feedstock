@@ -1,7 +1,8 @@
+channel_targets:
+  - freecad dev
 c_compiler:           # [win]
   - vs2022            # [win]
 cxx_compiler:         # [win]
   - vs2022            # [win]
-  
 MACOSX_SDK_VERSION:  # [osx]
   - 15.5             # [osx]
