@@ -14,8 +14,8 @@ github:
   branch_name: main
   tooling_branch_name: main
 provider:
-  linux: azure
-  linux_aarch64: azure
-  osx: azure
-  win: azure
+  linux: github_actions
+  linux_aarch64: github_actions
+  osx: github_actions
+  win: github_actions
 test: native_and_emulated
