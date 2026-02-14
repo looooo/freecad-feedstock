@@ -1,6 +1,6 @@
 {% set name = "freecad" %}
 {% set version = "1.2.dev" %}
-{% set build_number = 0 %}
+{% set build_number = 1 %}
 {% set sha256sum = "bca05873623c0b586a93ee5ce84d02ad6ff65a566281c592fa5894741e2e39fe" %}
 {% set url = "https://github.com/FreeCAD/FreeCAD/releases/download/weekly-2026.02.11/freecad_source_weekly-2026.02.11.tar.gz" %}
 
