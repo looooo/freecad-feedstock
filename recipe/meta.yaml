@@ -1,8 +1,8 @@
 {% set name = "freecad" %}
 {% set version = "1.2.dev" %}
-{% set build_number = 9 %}
-{% set sha256sum = "4a89b78a8156517f6ba36ba7c04694b7040f8d0a76c68dfaea5a77d146fbfb8b" %}
-{% set url = "https://github.com/FreeCAD/FreeCAD/releases/download/weekly-2026.04.01/freecad_source_weekly-2026.04.01.tar.gz" %}
+{% set build_number = 10 %}
+{% set sha256sum = "57409e45d7ff36686d321c6d2dc7db791114eabcc3482912a7ede8fd955f5980" %}
+{% set url = "https://github.com/FreeCAD/FreeCAD/releases/download/weekly-2026.04.08/freecad_source_weekly-2026.04.08.tar.gz" %}
 
 
 package:
