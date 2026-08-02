@@ -53,6 +53,13 @@ setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 source run_conda_forge_build_setup
 
 (
+source /etc/os-release
+MAJOR_VERSION_ID="${VERSION_ID%%.*}"
+if [[ "$ID" == "almalinux" && "$MAJOR_VERSION_ID" -ge 10 ]]; then
+    # Enable more repositories for Alma 10
+    # e.g. xvfb was in appstream but moved to devel in alma10
+    /usr/bin/sudo -n yum install -y almalinux-release-devel
+fi
 # Due to https://bugzilla.redhat.com/show_bug.cgi?id=1537564 old versions of rpm
 # are drastically slowed down when the number of file descriptors is very high.
 # This can be visible during a `yum install` step of a feedstock build.
@@ -127,7 +134,7 @@ else
     ( startgroup "Uploading packages" ) 2> /dev/null
 
     if [[ "${UPLOAD_PACKAGES}" != "False" ]] && [[ "${IS_PR_BUILD}" == "False" ]]; then
-        upload_package --validate --feedstock-name="${FEEDSTOCK_NAME}"  "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
+        python "${FEEDSTOCK_ROOT}/.scripts/upload_built_packages.py" "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}" --validate --feedstock-name="${FEEDSTOCK_NAME}" 
     fi
 
     ( endgroup "Uploading packages" ) 2> /dev/null

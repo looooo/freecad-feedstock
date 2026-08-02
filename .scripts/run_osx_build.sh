@@ -122,7 +122,7 @@ else
     ( startgroup "Uploading packages" ) 2> /dev/null
 
     if [[ "${UPLOAD_PACKAGES}" != "False" ]] && [[ "${IS_PR_BUILD}" == "False" ]]; then
-      upload_package --validate --feedstock-name="${FEEDSTOCK_NAME}" ./ ./recipe ./.ci_support/${CONFIG}.yaml
+      python ./.scripts/upload_built_packages.py ./ ./recipe ./.ci_support/${CONFIG}.yaml --validate --feedstock-name="${FEEDSTOCK_NAME}"
     fi
 
     ( endgroup "Uploading packages" ) 2> /dev/null

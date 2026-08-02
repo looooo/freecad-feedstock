@@ -100,7 +100,7 @@ call :end_group
 :: Prepare some environment variables for the upload step
 if /i "%CI%" == "github_actions" (
     set "FEEDSTOCK_NAME=%GITHUB_REPOSITORY:*/=%"
-    set "GIT_BRANCH=%GITHUB_REF:refs/heads/=%"
+    set "GIT_BRANCH=%GITHUB_REF_NAME%"
     if /i "%GITHUB_EVENT_NAME%" == "pull_request" (
         set "IS_PR_BUILD=True"
     ) else (
@@ -130,7 +130,7 @@ if /i "%UPLOAD_PACKAGES%" == "true" (
         call :start_group "Uploading packages"
         if not exist "%TEMP%\" md "%TEMP%"
         set "TMP=%TEMP%"
-        upload_package --validate --feedstock-name="%FEEDSTOCK_NAME%" .\ ".\recipe" .ci_support\%CONFIG%.yaml
+        python .scripts\upload_built_packages.py . ".\recipe" .ci_support\%CONFIG%.yaml --validate --feedstock-name="%FEEDSTOCK_NAME%"
         if !errorlevel! neq 0 exit /b !errorlevel!
         call :end_group
     )
