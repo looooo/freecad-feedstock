@@ -16,3 +16,9 @@ github:
   branch_name: main
   tooling_branch_name: main
 test: native_and_emulated
+provider:
+  linux: github_actions
+  linux_aarch64: github_actions
+  osx: github_actions
+  osx_arm64: github_actions
+  win: github_actions
