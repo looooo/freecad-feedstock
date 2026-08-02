@@ -27,6 +27,7 @@ build:
   number: ${{ build_number }}
   # Default: build.sh (Unix) / build.bat (Windows) next to this file
   script: build
+  skip: not match(python, '3.14.*')
 
 
 requirements:
